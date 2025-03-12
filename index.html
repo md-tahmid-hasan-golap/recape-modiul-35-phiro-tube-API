@@ -4,8 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API Project</title>
+
+    <!-- tailwind and daisyUI set up -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
+<body class="max-w-11/12 mx-auto">
+
+    <header>
+        <nav class="flex items-center justify-between  pt-6">
+            <div>
+                <img class="object-fill w-30" src="./assets/Logo.png" alt="">
+            </div>
+            <div>
+                <button  class="bg-[#25252533] py-1 px-4 rounded-md">Sort by view</button>
+            </div>
+            <div>
+                <button class="bg-[#FF1F3D] text-white px-3 py-1 rounded-md">Blog</button>
+            </div>
+        </nav>
+        <p class="border-gray-400 border mt-7"></p>
+    </header>
+
+    <nav id="categories" class="mt-7 flex justify-center space-x-4 items-center">
+        <div>
+            <button class="bg-[#FF1F3D] py-1 px-3 rounded-md text-white">All</button>
+        </div>
+    </nav>
     
+
+    <script src="./scripts/index.js"></script>
 </body>
 </html>
