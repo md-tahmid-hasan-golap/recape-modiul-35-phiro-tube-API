@@ -29,7 +29,7 @@ function display (categories){
 
         const btn_div = document.createElement("categories");
         btn_div.innerHTML = `
-             <button class="btn hover:bg-[#FF1F3D] hover:text-white">${categori.category}</button>
+             <button onclick="loadCategoryVideo(${categori.category_id})" class="btn hover:bg-[#FF1F3D] hover:text-white">${categori.category}</button>
         `
         //  appendChild div
 
@@ -55,12 +55,23 @@ function loadVideo (){
 
 // loadVideo()
 
+const loadCategoryVideo = (id) => {
+    // console.log(id)
+    const url = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`
+    console.log(url)
+    fetch(url)
+    .then(res => res.json())
+    .then(data => displayVideo(data.category))
+
+}
+
 
 const displayVideo = (videos) => {
      // console.log(videos)
 
     // parent Selection
     const videoContainar = document.getElementById("video_containar");
+    videoContainar.innerHTML = ""
    
     //   forEach loop chalobo
 
