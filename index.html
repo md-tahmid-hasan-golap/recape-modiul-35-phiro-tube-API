@@ -8,6 +8,12 @@
     <!-- tailwind and daisyUI set up -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .Acktive{
+            background: #FF1F3D;
+            color: white;
+        }
+    </style>
 </head>
 <body class="max-w-11/12 mx-auto">
 
@@ -28,13 +34,21 @@
 
     <nav id="categories" class="mt-7 flex justify-center space-x-4 items-center">
         <div>
-            <button onclick="loadVideo()" class="bg-[#FF1F3D] py-1 px-3 rounded-md text-white">All</button>
+            <button id="load_video" onclick="loadVideo()" class="btn btn-sm">All</button>
         </div>
     </nav>
 
     <!-- navbar end -->
 
     <section id="video_containar" class="grid grid-cols-4 gap-5 mt-7">
+
+
+        <div class="mt-7  text-center col-span-full flex flex-col justify-center items-center">
+           
+            <img class="w-32" src="./assets/Icon.png" alt="">
+            <h2 class="text-2xl font-bold">Oops!! Sorry, There is no <br> content here</h2>
+           
+        </div>
        
 
     </section>

@@ -29,7 +29,7 @@ function display (categories){
 
         const btn_div = document.createElement("categories");
         btn_div.innerHTML = `
-             <button onclick="loadCategoryVideo(${categori.category_id})" class="btn hover:bg-[#FF1F3D] hover:text-white">${categori.category}</button>
+             <button id="btn-${categori.category_id}" onclick="loadCategoryVideo(${categori.category_id})" class="btn hover:bg-[#FF1F3D] hover:text-white">${categori.category}</button>
         `
         //  appendChild div
 
@@ -50,7 +50,10 @@ function loadVideo (){
     fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
 
     .then((res) => res.json())
-    .then((data) => displayVideo(data.videos))
+    .then((data) => {
+        document.getElementById("load_video").classList.add("Acktive")
+        displayVideo(data.videos)
+    })
 }
 
 // loadVideo()
@@ -58,10 +61,16 @@ function loadVideo (){
 const loadCategoryVideo = (id) => {
     // console.log(id)
     const url = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`
-    console.log(url)
+    // console.log(url)
     fetch(url)
     .then(res => res.json())
-    .then(data => displayVideo(data.category))
+    .then(data => {
+        removerAcktiveClass()
+        const clickButton = document.getElementById(`btn-${id}`);
+        clickButton.classList.add("Acktive")
+        console.log(clickButton)
+        displayVideo(data.category)
+    })
 
 }
 
@@ -71,13 +80,22 @@ const displayVideo = (videos) => {
 
     // parent Selection
     const videoContainar = document.getElementById("video_containar");
-    videoContainar.innerHTML = ""
+    videoContainar.innerHTML = "";
+    if(videos.length === 0){
+        videoContainar.innerHTML = ` <div class="mt-7  text-center col-span-full flex flex-col justify-center items-center">
+           
+            <img class="w-32" src="./assets/Icon.png" alt="">
+            <h2 class="text-2xl font-bold">Oops!! Sorry, There is no <br> content here</h2>
+           
+        </div>`;
+        return
+    }
    
     //   forEach loop chalobo
 
     videos.forEach(video => {
 
-        console.log(video)
+        // console.log(video)
 
         const cardVideo = document.createElement("div") ;
 
@@ -118,6 +136,16 @@ const displayVideo = (videos) => {
 
 }
 
+
+// removed acktive class function
+function removerAcktiveClass () {
+    const AcktiveButton = document.getElementsByClassName("Acktive")
+    for(let btn of AcktiveButton){
+        btn.classList.remove("Acktive")
+        
+    }
+    console.log(AcktiveButton)
+}
 
 
 // {
