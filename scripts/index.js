@@ -44,10 +44,10 @@ function display (categories){
 
 // load video function
 
-function loadVideo (){
+function loadVideo ( searchText = " "){
 
     // fetch korbo
-    fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
+    fetch(`https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchText}`)
 
     .then((res) => res.json())
     .then((data) => {
@@ -121,7 +121,7 @@ const displayVideo = (videos) => {
                     <h1 class="text-sm font-semibold">${video.title}</h1>
                     <div class="flex items-center space-x-2">
                         <p class="text-sm text-gray-400">${video.authors[0].profile_name}</p>
-                        <img class="w-4" src="https://img.icons8.com/?size=96&id=98A4yZTt9abw&format=png" alt="">
+                       ${video.authors[0].verified == true ? ` <img class="w-4" src="https://img.icons8.com/?size=96&id=98A4yZTt9abw&format=png" alt="">` : `` }
                     </div>
                     <p>${video.others.views}</p>
                   </div>
@@ -181,6 +181,13 @@ function removerAcktiveClass () {
     console.log(AcktiveButton)
 }
 
+
+document.getElementById("search-input").addEventListener("keyup", (e) => {
+    const input = e.target.value;
+    // console.log(input)
+    loadVideo(input)
+
+})
 
 // {
 //     "category_id": "1003",
