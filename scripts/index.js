@@ -68,7 +68,7 @@ const loadCategoryVideo = (id) => {
         removerAcktiveClass()
         const clickButton = document.getElementById(`btn-${id}`);
         clickButton.classList.add("Acktive")
-        console.log(clickButton)
+        // console.log(clickButton)
         displayVideo(data.category)
     })
 
@@ -126,6 +126,7 @@ const displayVideo = (videos) => {
                     <p>${video.others.views}</p>
                   </div>
             </div>
+            <button onclick=loadVideoDetails('${video.video_id}') class="btn btn-block">Show Details</button>
           </div>
        
 
@@ -133,6 +134,39 @@ const displayVideo = (videos) => {
         videoContainar.appendChild(cardVideo)
         
     });
+
+}
+
+// loader function
+const loadVideoDetails = (videoID) => {
+    console.log(videoID)
+    const url = `https://openapi.programming-hero.com/api/phero-tube/video/${videoID}`
+    fetch(url)
+    .then(res => res.json())
+    .then(data => displayVideoDitals(data.video))
+}
+
+const displayVideoDitals = (video)=>{
+    console.log(video);
+    document.getElementById("video_details").showModal();
+    const detailsContainar = document.getElementById("DEtails_containar");
+    detailsContainar.innerHTML = `
+    <div class="card bg-base-100 image-full  shadow-sm">
+  <figure>
+    <img
+      src="${video.thumbnail}" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">Card Title</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div class="card-actions justify-end">
+      
+    </div>
+  </div>
+</div>
+   
+
+    `
 
 }
 
