@@ -30,6 +30,9 @@ function display (categories){
         const btn_div = document.createElement("categories");
         btn_div.innerHTML = `
              <button id="btn-${categori.category_id}" onclick="loadCategoryVideo(${categori.category_id})" class="btn hover:bg-[#FF1F3D] hover:text-white">${categori.category}</button>
+
+             
+            
         `
         //  appendChild div
 
@@ -58,7 +61,10 @@ function loadVideo ( searchText = " "){
 
 // loadVideo()
 
+
+
 const loadCategoryVideo = (id) => {
+
     // console.log(id)
     const url = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`
     // console.log(url)
@@ -70,6 +76,7 @@ const loadCategoryVideo = (id) => {
         clickButton.classList.add("Acktive")
         // console.log(clickButton)
         displayVideo(data.category)
+
     })
 
 }
